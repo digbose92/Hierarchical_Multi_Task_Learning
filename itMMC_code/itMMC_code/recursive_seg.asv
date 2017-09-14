@@ -1,0 +1,21 @@
+im = double(imread('C:\Documents and Settings\twinsen\Desktop\images\grass.bmp'));
+[m,n,d]=size(im);
+data = zeros(m*n,3);
+data(:) = im;
+
+a = imread('grass2.bmp');
+a = a(:,:,1);
+a = a(:);
+b = a;
+b(find(a>=100)) = 1;
+b(find(a<100)) = 0;
+
+bb = zeros(m,n);
+
+dex1 = find(b == 1);
+data1 = data(dex1,:);
+[label1, xx] = kmeans(data1,2);
+dex11 = find(label1 == 1);
+dex12 = find(label1 == 2);
+
+b(de1(d)

@@ -1,0 +1,14 @@
+load('uci2v7.mat');         %uci digit 2 & 7
+%load('svmguide1-a.mat');   %svmguide1-a data (sampled 1000 po
+[n, dim] = size(x);
+
+%k-means clustering
+p = kmeans(x,2); 
+p = (p-1.5)*2;
+l = length(find(p~= label));
+err1 = min(l, n-l)/n;
+
+% iterative svr, initialized by k-means clustering
+q = iterativeSVR(x, 500, 500, p, label, 1e-3, 0.03);
+l = length(find(q~= label));
+err2 = min(l, n-l)/n;
